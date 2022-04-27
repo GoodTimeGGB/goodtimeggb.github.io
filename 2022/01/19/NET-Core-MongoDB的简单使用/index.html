@@ -1,0 +1,1485 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content=".NET Core MongoDB的简单使用, GoodTime&#39;s Blog">
+    <meta name="description" content="一、创建测试库、测试表、添加测试数据使用之前文章提到的MongoDB Compass用法分别添加数据库[myDb]和集合(表)[userinfos]信息，
+参考链接为：MongoDB Compass的安装及使用图文说明（非常详细），同时数据">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>.NET Core MongoDB的简单使用 | GoodTime&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">GoodTime&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">GoodTime&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            好好学习，天天向上
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">.NET Core MongoDB的简单使用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/mongodb-MongoDB-netcore/">
+                                <span class="chip bg-color">mongodb,MongoDB,.netcore</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-01-19
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、创建测试库、测试表、添加测试数据"><a href="#一、创建测试库、测试表、添加测试数据" class="headerlink" title="一、创建测试库、测试表、添加测试数据"></a>一、创建测试库、测试表、添加测试数据</h2><p>使用之前文章提到的MongoDB Compass用法分别添加数据库[myDb]和集合(表)[userinfos]信息，</p>
+<p>参考链接为：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sunshineGGB/article/details/122477159?spm=1001.2014.3001.5502">MongoDB Compass的安装及使用图文说明（非常详细）</a>，同时数据库连接语句也可从MongoDB Compass中获得</p>
+<p><img src="https://img-blog.csdnimg.cn/0aa4e60a66734626a7aa1a49d41cb033.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>使用mongo shell命令添加测试数据</p>
+<p><img src="https://img-blog.csdnimg.cn/df796ab085a0411ca415d8f66144584e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>添加完成，MongoDB Compass中可看到已添加的数据</p>
+<p><img src="https://img-blog.csdnimg.cn/efb97ae4b3294d07b511f6eadc8bf249.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h2 id="二、新建ASP-NET-Core-Web-API项目"><a href="#二、新建ASP-NET-Core-Web-API项目" class="headerlink" title="二、新建ASP.NET Core Web API项目"></a>二、新建ASP.NET Core Web API项目</h2><h4 id="1、使用NuGet包管理器添加MongoDB-Driver"><a href="#1、使用NuGet包管理器添加MongoDB-Driver" class="headerlink" title="1、使用NuGet包管理器添加MongoDB.Driver"></a>1、使用NuGet包管理器添加MongoDB.Driver</h4><p><img src="https://img-blog.csdnimg.cn/765532c682084636b8ca7f9cc23fdcd7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h4 id="2、编写demo示例"><a href="#2、编写demo示例" class="headerlink" title="2、编写demo示例"></a>2、编写demo示例</h4><h6 id="1）插入"><a href="#1）插入" class="headerlink" title="1）插入"></a>1）插入</h6><p>向myDb.userinfos中插入一条数据</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 插入数据demo（仅可执行一次）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertDemo</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 待添加的document</span></span><br><span class="line">    <span class="comment">// 待添加的document</span></span><br><span class="line">    <span class="keyword">var</span> doc = <span class="keyword">new</span> BsonDocument &#123;</span><br><span class="line">        &#123; <span class="string">&quot;_id&quot;</span>, <span class="number">7</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;name&quot;</span>, <span class="string">&quot;吴九&quot;</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;age&quot;</span>, <span class="number">29</span> &#125;,</span><br><span class="line">        &#123; <span class="string">&quot;ename&quot;</span>, <span class="keyword">new</span> BsonDocument</span><br><span class="line">            &#123;</span><br><span class="line">                &#123; <span class="string">&quot;firstname&quot;</span>, <span class="string">&quot;jiu&quot;</span> &#125;,</span><br><span class="line">                &#123; <span class="string">&quot;lastname&quot;</span>, <span class="string">&quot;wu&quot;</span> &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// InsertOne() 添加单条document</span></span><br><span class="line">    mycollection.InsertOne(doc);</span><br><span class="line">    <span class="comment">// 添加多条document</span></span><br><span class="line">    <span class="comment">//mycollection.InsertMany(IEnumerable&lt;BsonDocument&gt; docs);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在MongoDB compass中可以看到新增的数据</p>
+<p><img src="https://img-blog.csdnimg.cn/84464e846ee54c35b50b70a3e0e5f4ce.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h6 id="2）查询"><a href="#2）查询" class="headerlink" title="2）查询"></a>2）查询</h6><p>① 简单查询</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 简单查询（Find）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchByFindOrFilter</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// Filter用于过滤，如查询name = &#x27;吴九&#x27; 的第一条记录</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="comment">// Find(Filter)进行查询</span></span><br><span class="line">    <span class="keyword">var</span> doc = mycollection.Find(filter.Eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;吴九&quot;</span>)).FirstOrDefault();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;简单查询结果：&quot;</span> + doc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/62a77655925a43899954368367e413d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>② AND查询</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> AND查询</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchByAnd</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询年龄大于25且小于28的记录</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Gt(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>) &amp; filter.Lt(<span class="string">&quot;age&quot;</span>, <span class="number">28</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;AND查询结果：&quot;</span> + d)</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>AND查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/de0d80df6f734d0ea7b41d80aafdd1d4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>③ OR查询</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> OR查询</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchByOr</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询年龄小于25或大于28的记录</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Lt(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>) | filter.Gt(<span class="string">&quot;age&quot;</span>, <span class="number">28</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;OR查询结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>OR查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/3abaefee29974d42a63f09fcc41878f1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>④ 字段存在（Exists）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 字段存在（Exists）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchIsExists</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询存在address字段的记录</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt; BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Exists(<span class="string">&quot;address&quot;</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;存在address记录的查询结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字段存在（Exists）的查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/4944d3b226a34aa6afbf01fef15e36a0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>⑤ 排序（Sort）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 排序（Sort）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchWithSort</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询age&lt;26的记录，按年龄倒序排列</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders &lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> sort = Builders &lt;BsonDocument&gt;.Sort;</span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Lt(<span class="string">&quot;age&quot;</span>, <span class="number">26</span>)) <span class="comment">// 过滤</span></span><br><span class="line">        .Sort(sort.Descending(<span class="string">&quot;age&quot;</span>)) <span class="comment">// 排序</span></span><br><span class="line">        .ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;排序的查询结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>排序（Sort）的查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/173b69dae777450d8e350e7216620097.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>⑥ 查询指定字段（Projection）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 查询指定字段（Projection）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SearchWithSpecifyField</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询age&lt;26的记录，包含name、age，排除 _id</span></span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> project = Builders&lt;BsonDocument&gt;.Projection;</span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Lt(<span class="string">&quot;age&quot;</span>, <span class="number">26</span>)) <span class="comment">// 过滤</span></span><br><span class="line">        .Project(project.Include(<span class="string">&quot;name&quot;</span>) <span class="comment">// 包含name</span></span><br><span class="line">            .Include(<span class="string">&quot;age&quot;</span>) <span class="comment">// 包含age</span></span><br><span class="line">            .Exclude(<span class="string">&quot;_id&quot;</span>)) <span class="comment">// 包含_id</span></span><br><span class="line">        .ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;查询指定字段的查询结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查询指定字段（Projection）的查询结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/54b1ffb99b4b411a8656cc92464eae1e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h6 id="3）修改"><a href="#3）修改" class="headerlink" title="3）修改"></a>3）修改</h6><p>① 修改单条记录（UpdateOne）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 修改单条记录（UpdateOne）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UpdateOneRecord</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument &gt; (<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> update = Builders&lt;BsonDocument&gt;.Update;</span><br><span class="line">    <span class="keyword">var</span> project = Builders&lt;BsonDocument&gt;.Projection;</span><br><span class="line">    <span class="keyword">var</span> docBefore = mycollection.Find(filter.Eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>)).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>)).FirstOrDefault();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;修改前单条记录的结果为：&quot;</span> + docBefore);</span><br><span class="line">    <span class="comment">// 将张三的年龄改为18</span></span><br><span class="line">    mycollection.UpdateOne(filter.Eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>), update.Set(<span class="string">&quot;age&quot;</span>, <span class="number">18</span>));</span><br><span class="line">    <span class="comment">// 查询修改后张三的记录</span></span><br><span class="line">    <span class="keyword">var</span> docAfter = mycollection.Find(filter.Eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>)).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>)).FirstOrDefault();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;修改后单条记录的结果为：&quot;</span> + docAfter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>② 修改多条记录（UpdateMany）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 修改多条记录（UpdateMany）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UpdateManyRecord</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> update = Builders&lt;BsonDocument&gt;.Update;</span><br><span class="line">    <span class="keyword">var</span> project = Builders&lt;BsonDocument&gt;.Projection;</span><br><span class="line">    <span class="keyword">var</span> docBefore = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;mark&quot;</span>)) <span class="comment">// 没有的列不会显示</span></span><br><span class="line">        .ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;修改多条记录前的结果为：&quot;</span>);</span><br><span class="line">    docBefore.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">    <span class="comment">// 将所有年龄小于25的记录标记为young（如果没有mark字段会自动添加）</span></span><br><span class="line">    UpdateResult result = mycollection.UpdateMany(filter.Lt(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>), update.Set(<span class="string">&quot;mark&quot;</span>, <span class="string">&quot;young&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span>(result.IsModifiedCountAvailable) <span class="comment">// 获取一个表示修改后的计数是否可用的值</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine($ <span class="string">&quot;符合条件的有&#123;result.MatchedCount&#125;条记录，&quot;</span>);</span><br><span class="line">        Console.WriteLine($ <span class="string">&quot;一共修改了&#123;result.ModifiedCount&#125;条记录。&quot;</span>);</span><br><span class="line">        <span class="comment">// 查询修改后的记录</span></span><br><span class="line">        <span class="keyword">var</span> docs = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;mark&quot;</span>)).ToList();</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;修改多条记录后的结果为：&quot;</span>);</span><br><span class="line">        docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;无修改操作！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改多条记录（UpdateMany）的结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/e5fd08296f79467492e938704d844e6a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h6 id="4）删除"><a href="#4）删除" class="headerlink" title="4）删除"></a>4）删除</h6><p>① 删除单条记录（DeleteOne）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 删除单条记录（DeleteOne）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DeleteOneRecord</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt; (<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> project = Builders&lt;BsonDocument&gt;.Projection;</span><br><span class="line">    <span class="keyword">var</span> docBefore = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;mark&quot;</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;删除张三前的记录的结果为：&quot;</span>);</span><br><span class="line">    docBefore.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">    <span class="comment">// 删除名字为张三的记录</span></span><br><span class="line">    mycollection.DeleteOne(filter.Eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;张三&quot;</span>));</span><br><span class="line">    <span class="comment">// 查询删除张三后的记录</span></span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;max&quot;</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;删除张三后的记录的结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除单条记录（DeleteOne）的结果为： </p>
+<p><img src="https://img-blog.csdnimg.cn/56cbf6dd57aa41f1aacd325970163b8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>② 删除多条记录（DeleteMany）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 删除多条记录（DeleteMany）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DeleteManyRecord</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;BsonDocument&gt; (<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;BsonDocument&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> project = Builders&lt;BsonDocument&gt;.Projection;</span><br><span class="line">    <span class="keyword">var</span> docBefore = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;mark&quot;</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;删除所有年龄大于25岁的记录前的结果为：&quot;</span>);</span><br><span class="line">    docBefore.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">    <span class="comment">// 删除所有年龄大于25岁的记录</span></span><br><span class="line">    DeleteResult result = mycollection.DeleteMany(filter.Gt(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>));</span><br><span class="line">    Console.WriteLine($ <span class="string">&quot;一共删除了&#123;result.DeletedCount&#125;条记录&quot;</span>);</span><br><span class="line">    <span class="comment">// 查询删除所有年龄大于25岁的记录</span></span><br><span class="line">    <span class="keyword">var</span> docs = mycollection.Find(filter.Empty).Project(project.Include(<span class="string">&quot;age&quot;</span>).Include(<span class="string">&quot;name&quot;</span>).Include(<span class="string">&quot;max&quot;</span>)).ToList();</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;删除所有年龄大于25岁的记录后的结果为：&quot;</span>);</span><br><span class="line">    docs.ForEach(d =&gt; Console.WriteLine(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除多条记录（DeleteMany）的结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/017642216c454ef5988112cd72eb453e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h6 id="5）类型映射"><a href="#5）类型映射" class="headerlink" title="5）类型映射"></a>5）类型映射</h6><p>① 查询结果映射到实体类示例</p>
+<p>mongoDB支持自动映射，直接使用泛型即可</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 查询结果映射到实体类示例</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TypeMappingDemo</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;Userinfo&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;Userinfo&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> sort = Builders&lt;Userinfo&gt;.Sort;</span><br><span class="line">    List&lt;Userinfo&gt; userinfos = mycollection.Find(filter.Lte(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>)) <span class="comment">// 查询年龄小于等于25岁的记录</span></span><br><span class="line">        .Sort(sort.Descending(<span class="string">&quot;age&quot;</span>)) <span class="comment">// 按年龄进行倒序</span></span><br><span class="line">        .ToList();</span><br><span class="line">    <span class="comment">// 遍历结果</span></span><br><span class="line">    userinfos.ForEach(u =&gt; Console.WriteLine($ <span class="string">&quot;姓名：&#123;u.name&#125;，年龄：&#123;u.age&#125;，英文名：&#123;u.ename.firstname&#125; &#123;u.ename.lastname&#125;&quot;</span>));</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户信息类</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 用户信息类</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Userinfo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> id</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> _id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 姓名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 年龄</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 等级</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> level &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 英文名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> Ename ename &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 角色</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span>[] roles &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 地址</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> address &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 标记</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> mark &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>英文名类</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 英文名</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Ename</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> firstname &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 姓</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> lastname &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查询结果映射到实体类示例的结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/10b1cccc8abb4fe9bbf53e2baf1488b0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_8,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>② 查询结果映射到实体类示例 - 常用属性修改上方代码</p>
+<p>上边的例子仅仅用了基本的自动化映射，<font color="red">使用基本的自动化映射时：类和Bson中的字段必须严格一致(_id除外，可以自动映射到_id&#x2F;id&#x2F;Id)，且Bson中的每一个字段在实体类中都必须有一个对应的字段，不然就会抛出异常，这就造成我们可能要写一个非常庞大的实体类，而且类中的字段命名也要严格和Bson中的字段一致。</font>这些限制对我们开发来说是不能接受的，这里我们采用mongoDriver中的一些属性改进一下上边的代码，如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 查询结果映射到实体类示例 - 常用属性修改上方代码</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TypeMappingWithCommonAttributes</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> mycollection = mydb.GetCollection&lt;UserinfoBson&gt;(<span class="string">&quot;userinfos&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> filter = Builders&lt;UserinfoBson&gt;.Filter;</span><br><span class="line">    <span class="keyword">var</span> sort = Builders&lt;UserinfoBson&gt;.Sort;</span><br><span class="line">    List&lt;UserinfoBson&gt; userinfos = mycollection.Find(filter.Lte(<span class="string">&quot;age&quot;</span>, <span class="number">25</span>)) <span class="comment">// 查询年龄小于等于25岁的记录</span></span><br><span class="line">        .Sort(sort.Descending(<span class="string">&quot;age&quot;</span>)) <span class="comment">// 按年龄进行倒序</span></span><br><span class="line">        .ToList();</span><br><span class="line">    <span class="comment">// 遍历结果</span></span><br><span class="line">    userinfos.ForEach(u =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine($ <span class="string">&quot;编号：&#123;u.userId&#125;，姓名：&#123;u.name&#125;，年龄：&#123;u.age&#125;，英文名：&#123;u.ename?.ming&#125; &#123;u.ename.xing&#125;，性别：&#123;u.gender&#125;&quot;</span>);</span><br><span class="line">        Console.WriteLine($ <span class="string">&quot;其他属性：&#123;u.otherprops&#125;&quot;</span>);</span><br><span class="line">        Console.WriteLine();</span><br><span class="line">    &#125;);</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户信息类 - Bson </p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 用户信息类 - Bson</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserinfoBson</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> id</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonId</span>] <span class="comment">// BsonId修饰的字段对应BsonDocument中的_id；</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> userId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 姓名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 年龄</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 英文名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EnameBson ename &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 性别</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonDefaultValue(&#x27;男&#x27;)</span>] <span class="comment">// BsonDefaultValue(value)用于指定默认值；</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">char</span> gender &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 昵称</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonIgnore</span>] <span class="comment">// BsonIgnore表示不映射，即使BsonDocument中包含该字段也不会赋值给属性；</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> nickname &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 其他属性</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonExtraElements</span>] <span class="comment">// BsonExtraElements修饰的字段用于存储没有映射到类中的其他属性；</span></span><br><span class="line">    <span class="keyword">public</span> BsonDocument otherprops &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 英文名类 - Bson</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 英文名 - Bson</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EnameBson</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonElement(<span class="string">&quot;firstname&quot;</span>)</span>] <span class="comment">// BsonElement可以指定修饰的属性映射到BsonDocument中的哪个字段</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ming &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 姓</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonElement(<span class="string">&quot;lastname&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> xing &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查询结果映射到实体类示例 - 常用属性修改上方代码的结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/29a3811ac51e4613a81d4b7a52d5167b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h6 id="6）使用LINQ查询"><a href="#6）使用LINQ查询" class="headerlink" title="6）使用LINQ查询"></a>6）使用LINQ查询</h6><p>① 基本查询：查找年龄大于22岁的学生；② 连接查询：查询各个学生的学号、姓名、班级名</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 使用LINQ查询</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet, HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LINQQuery</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 连接数据库</span></span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> MongoClient(<span class="string">&quot;mongodb://localhost:27017/?readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取DataBase</span></span><br><span class="line">    <span class="keyword">var</span> mydb = client.GetDatabase(<span class="string">&quot;myDb&quot;</span>);</span><br><span class="line">    <span class="comment">// 获取Collection</span></span><br><span class="line">    <span class="keyword">var</span> stuCollection = mydb.GetCollection&lt;Student&gt; (<span class="string">&quot;students&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> clsCollection = mydb.GetCollection &lt;Classx&gt; (<span class="string">&quot;classes&quot;</span>);</span><br><span class="line">    <span class="comment">//查找年龄大于22的学生</span></span><br><span class="line">    Console.WriteLine(<span class="string">&quot;-------------查找年龄大于22的学生列表--------------&quot;</span>);</span><br><span class="line">    <span class="comment">//1.query语法</span></span><br><span class="line">    List&lt;Student&gt; stuList1 = (<span class="keyword">from</span> stu <span class="keyword">in</span> stuCollection.AsQueryable() <span class="keyword">where</span> stu.age &gt; <span class="number">22</span> <span class="keyword">select</span> stu).ToList();</span><br><span class="line">    <span class="comment">//2.点语法</span></span><br><span class="line">    List&lt;Student&gt; stuList2 = stuCollection.AsQueryable().Where(s =&gt; s.age &gt; <span class="number">22</span>).ToList();</span><br><span class="line">    stuList1.ForEach(stu =&gt; Console.WriteLine($ <span class="string">&quot;姓名:&#123;stu?.stuName&#125;,  年龄:&#123;stu?.age&#125;&quot;</span>));</span><br><span class="line">    Console.WriteLine();</span><br><span class="line">    <span class="comment">//表连接查询，查询各个学生的班级名</span></span><br><span class="line">    Console.WriteLine(<span class="string">&quot;-------------表连接，查询学生的班级名----------------&quot;</span>);</span><br><span class="line">    <span class="comment">//1.query语法</span></span><br><span class="line">    <span class="keyword">var</span> result1 = <span class="keyword">from</span> stu <span class="keyword">in</span> stuCollection.AsQueryable()</span><br><span class="line">    <span class="keyword">join</span> cls <span class="keyword">in</span> clsCollection.AsQueryable()</span><br><span class="line">    <span class="keyword">on</span> stu.classNo <span class="keyword">equals</span> cls.no</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        stuno = stu.no, stu.stuName, cls.clsName</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//2.点语法</span></span><br><span class="line">    <span class="keyword">var</span> result2 = stuCollection.AsQueryable().Join(clsCollection.AsQueryable(), stu =&gt; stu.classNo, cls =&gt; cls.no, (stu, cls) =&gt; <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        stuno = stu.no, stu.stuName, cls.clsName</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//遍历结果</span></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> item <span class="keyword">in</span> result1)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine($ <span class="string">&quot;学号:&#123;item.stuno&#125;, 姓名:&#123;item.stuName&#125;, 班级:&#123;item.clsName&#125;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>学生类</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 学生类</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 学号</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> no</span><br><span class="line">    &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 姓名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> stuName</span><br><span class="line">    &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 年龄</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 班级编号</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> classNo &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 其他</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonExtraElements</span>]</span><br><span class="line">    <span class="keyword">public</span> BsonDocument others &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>班级类</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 班级类</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Classx</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 班级编号</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> no &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 班级名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> clsName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 其他</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">BsonExtraElements</span>]</span><br><span class="line">    <span class="keyword">public</span> BsonDocument others &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找年龄大于22岁的学生以及查询各个学生的学号、姓名、班级名的结果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/024232649f144fc8a572d0a2f2fceef6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h2 id="三、附录"><a href="#三、附录" class="headerlink" title="三、附录"></a>三、附录</h2><h4 id="1、userinfos表测试数据"><a href="#1、userinfos表测试数据" class="headerlink" title="1、userinfos表测试数据"></a>1、userinfos表测试数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use myDb</span><br><span class="line">db.userinfos.insertMany([</span><br><span class="line">   &#123;_id:<span class="number">1</span>, name: &quot;张三&quot;, age: <span class="number">23</span>,level:<span class="number">10</span>, ename: &#123; firstname: &quot;san&quot;, lastname: &quot;zhang&quot;&#125;, roles: [&quot;vip&quot;,&quot;gen&quot; ]&#125;,</span><br><span class="line">   &#123;_id:<span class="number">2</span>, name: &quot;李四&quot;, age: <span class="number">24</span>,level:<span class="number">20</span>, ename: &#123; firstname: &quot;si&quot;, lastname: &quot;li&quot;&#125;, roles:[ &quot;vip&quot; ]&#125;,</span><br><span class="line">   &#123;_id:<span class="number">3</span>, name: &quot;王五&quot;, age: <span class="number">25</span>,level:<span class="number">30</span>, ename: &#123; firstname: &quot;wu&quot;, lastname: &quot;wang&quot;&#125;, roles: [&quot;gen&quot;,&quot;vip&quot; ]&#125;,</span><br><span class="line">   &#123;_id:<span class="number">4</span>, name: &quot;赵六&quot;, age: <span class="number">26</span>,level:<span class="number">40</span>, ename: &#123; firstname: &quot;liu&quot;, lastname: &quot;zhao&quot;&#125;, roles: [&quot;gen&quot;] &#125;,</span><br><span class="line">   &#123;_id:<span class="number">5</span>, name: &quot;田七&quot;, age: <span class="number">27</span>, ename: &#123; firstname: &quot;qi&quot;, lastname: &quot;tian&quot;&#125;, address:<span class="string">&#x27;北京&#x27;</span> &#125;,</span><br><span class="line">   &#123;_id:<span class="number">6</span>, name: &quot;周八&quot;, age: <span class="number">28</span>,roles:[&quot;gen&quot;], address:<span class="string">&#x27;上海&#x27;</span> &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、student表测试数据"><a href="#2、student表测试数据" class="headerlink" title="2、student表测试数据"></a>2、student表测试数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.students.insertMany([</span><br><span class="line">    &#123;&quot;no&quot;:<span class="number">1</span>, &quot;stuName&quot;:&quot;jack&quot;, &quot;age&quot;:<span class="number">23</span>, &quot;classNo&quot;:<span class="number">1</span>&#125;,</span><br><span class="line">    &#123;&quot;no&quot;:<span class="number">2</span>, &quot;stuName&quot;:&quot;tom&quot;, &quot;age&quot;:<span class="number">20</span>, &quot;classNo&quot;:<span class="number">2</span>&#125;,</span><br><span class="line">    &#123;&quot;no&quot;:<span class="number">3</span>, &quot;stuName&quot;:&quot;hanmeimei&quot;, &quot;age&quot;:<span class="number">22</span>, &quot;classNo&quot;:<span class="number">1</span>&#125;,</span><br><span class="line">    &#123;&quot;no&quot;:<span class="number">4</span>, &quot;stuName&quot;:&quot;lilei&quot;, &quot;age&quot;:<span class="number">24</span>, &quot;classNo&quot;:<span class="number">2</span>&#125;</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、classs表测试数据"><a href="#3、classs表测试数据" class="headerlink" title="3、classs表测试数据"></a>3、classs表测试数据</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.classes.insertMany([</span><br><span class="line">    &#123;<span class="string">&quot;no&quot;</span> : <span class="number">1</span>,<span class="string">&quot;clsName&quot;</span> : <span class="string">&quot;A班&quot;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;no&quot;</span> : <span class="number">2</span>,<span class="string">&quot;clsName&quot;</span> : <span class="string">&quot;B班&quot;</span>&#125;</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、-MongoDB-NET-Driver官方文档：http-mongodb-github-io-mongo-csharp-driver"><a href="#4、-MongoDB-NET-Driver官方文档：http-mongodb-github-io-mongo-csharp-driver" class="headerlink" title="4、 MongoDB .NET Driver官方文档：http://mongodb.github.io/mongo-csharp-driver/"></a>4、 MongoDB .NET Driver官方文档：<a target="_blank" rel="noopener" href="http://mongodb.github.io/mongo-csharp-driver/">http://mongodb.github.io/mongo-csharp-driver/</a></h4><h3 id="以上就是-NET-Core-MongoDB的简单使用的介绍，做此记录，如有帮助，欢迎点赞关注收藏！"><a href="#以上就是-NET-Core-MongoDB的简单使用的介绍，做此记录，如有帮助，欢迎点赞关注收藏！" class="headerlink" title="以上就是.NET Core MongoDB的简单使用的介绍，做此记录，如有帮助，欢迎点赞关注收藏！"></a>以上就是.NET Core MongoDB的简单使用的介绍，做此记录，如有帮助，欢迎点赞关注收藏！</h3>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">GoodTimeGGB</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://goodtimeggb.github.io/2022/01/19/NET-Core-MongoDB%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">https://goodtimeggb.github.io/2022/01/19/NET-Core-MongoDB%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">GoodTimeGGB</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/mongodb-MongoDB-netcore/">
+                                    <span class="chip bg-color">mongodb,MongoDB,.netcore</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay_img.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat_img.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'HG4kH4WkhvkWdyFDhwDlosMO-gzGzoHsz',
+        appKey: 'LiXQwNH7LbrydXRNarN0XI6k',
+        notify: 'true' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '快来评论吧~'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/01/20/NET-Core-%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%B8%B8%E7%94%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E6%A1%86%E6%9E%B6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt=".NET Core 日志记录程序和常用日志记录框架">
+                        
+                        <span class="card-title">.NET Core 日志记录程序和常用日志记录框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            GoodTimeGGB
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/netcore-log4net-nlog-serilog-%E6%97%A5%E5%BF%97/">
+                        <span class="chip bg-color">.netcore,log4net,nlog,serilog,日志</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/19/ECharts-%E9%A5%BC%E5%9B%BE%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E6%BA%90bug-%E5%BC%80%E5%A7%8B%E6%B2%A1%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA-%E5%88%87%E6%8D%A2%E6%88%96%E5%88%B7%E6%96%B0%E5%90%8E%E6%98%BE%E7%A4%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="ECharts 饼图切换数据源bug 开始没数据显示 切换或刷新后显示">
+                        
+                        <span class="card-title">ECharts 饼图切换数据源bug 开始没数据显示 切换或刷新后显示</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            GoodTimeGGB
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/echarts-javascript-ecmascript/">
+                        <span class="chip bg-color">echarts,javascript,ecmascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">GoodTimeGGB</a>
+            |&nbsp;Powered by&nbsp;<a href="https://goodtimeggb.github.io/" target="_blank">GoodTimeGGB</a>
+            |&nbsp;友情链接&nbsp;<a href="https://blog.csdn.net/sunshineGGB?spm=1000.2115.3001.5343" target="_blank">我的CSDN博客</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/GoodTimeGGB" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1031427248@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1031427248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1031427248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+</html>

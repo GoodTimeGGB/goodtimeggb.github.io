@@ -1,0 +1,1704 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ASP.NET Core开发者指南（2022版路线图）, GoodTime&#39;s Blog">
+    <meta name="description" content="ASP.NET Core开发者指南
+2022年 ASP.NET Core 开发者指南：
+
+在下面，您可以看到一个图，说明可以采用的路径以及要成为ASP.NET Core开发人员所想要学习的库。我将此图作为提示，给所有问我”作为ASP.NET">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>ASP.NET Core开发者指南（2022版路线图） | GoodTime&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">GoodTime&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">GoodTime&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            好好学习，天天向上
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ASP.NET Core开发者指南（2022版路线图）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/asp-net-net-core-net-c-%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">asp.net,.net core,.net,c#,后端</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-01-26
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="ASP-NET-Core开发者指南"><a href="#ASP-NET-Core开发者指南" class="headerlink" title="ASP.NET Core开发者指南"></a>ASP.NET Core开发者指南</h1><blockquote>
+<p>2022年 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/">ASP.NET Core</a> 开发者指南：</p>
+</blockquote>
+<p>在下面，您可以看到一个图，说明可以采用的路径以及要成为ASP.NET Core开发人员所想要学习的库。我将此图作为提示，给所有问我”作为ASP.NET Core开发人员，接下来应该学习什么？”的人。</p>
+<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><blockquote>
+<p>该指南的目的是为了给读者心有个大概的轮廓。如果你对接下来要学习的内容感到困惑时，这张路线图将指导你，而不是鼓励你选择时髦的东西。你应该逐渐理解为什么一种工具比另一种工具更适合某些场景，并且记住时髦和新颖的东西并不总是意味着最适合这个工作。</p>
+</blockquote>
+<h2 id="请给一个星星-star"><a href="#请给一个星星-star" class="headerlink" title="请给一个星星! :star:"></a>请给一个星星! :star:</h2><p>如果你喜欢或正在使用这个项目进行学习或引用在你的解决方案中，请给它一个星星。谢谢!</p>
+<h2 id="路线图"><a href="#路线图" class="headerlink" title="路线图"></a>路线图</h2><p><img src="https://img-blog.csdnimg.cn/375cf2b241f14278b24988366b8874fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3Vuc2hpbmVHR0I=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ol>
+<li><p>学习先决条件</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.pluralsight.com/paths/csharp">C# 10</a></li>
+<li><a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/dotnet/announcing-net-6">.NET 6</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pluralsight.com/search?q=entity%20framework%20core">Entity Framework</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/StackExchange/Dapper">Dapper</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nhibernate/nhibernate-core">NHibernate</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pluralsight.com/search?q=asp.net%20core">ASP.NET Core</a></li>
+<li>SQL 基础知识</li>
+</ul>
+</li>
+<li><p>通用开发技能</p>
+<ul>
+<li>学习GIT 并且在 GitHub 中创建与分享项目</li>
+<li>掌握 HTTP(S) 协议与请求方法 (GET, POST, PUT, PATCH, DELETE, OPTIONS)</li>
+<li>不要害怕使用 Google，<a target="_blank" rel="noopener" href="http://www.powersearchingwithgoogle.com/">Google搜索技巧</a></li>
+<li>学习 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/core/tools/">dotnet CLI</a></li>
+<li>阅读一些关于算法和数据结构的书籍</li>
+</ul>
+</li>
+<li><p>ASP.NET Core 基础</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-6.0">MVC</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio">REST</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-6.0&tabs=visual-studio">Razor Pages</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-6.0">Razor Components</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0">Middlewares</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-6.0">Filters &amp; Attributes</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-6.0">Application Settings &amp; Configurations</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-6.0">Authentication</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-6.0">Authorization</a></li>
+<li><a target="_blank" rel="noopener" href="https://identityserver4.readthedocs.io/en/latest">IdentityServer</a></li>
+<li><a target="_blank" rel="noopener" href="https://auth0.com/docs">Auth0</a></li>
+<li><a target="_blank" rel="noopener" href="https://openid.net/connect">OIDC</a></li>
+</ul>
+</li>
+<li><p>SOLID</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetcurry.com/software-gardening/1148/solid-single-responsibility-principle">单一责任原则 (SRP)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetcurry.com/software-gardening/1176/solid-open-closed-principle">开放封闭原则 (OCP)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetcurry.com/software-gardening/1235/liskov-substitution-principle-lsp-solid-patterns">里氏替换原则 (LSP)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetcurry.com/software-gardening/1257/interface-segregation-principle-isp-solid-principle">接口分离原则 (ISP)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dotnetcurry.com/software-gardening/1284/dependency-injection-solid-principles">依赖倒置原则 (DIP)</a></li>
+</ul>
+</li>
+<li><p>依赖注入</p>
+<ol>
+<li>DI 容器<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/dependency-injection">Microsoft.Extensions.DependencyInjection</a></li>
+<li><a target="_blank" rel="noopener" href="https://autofaccn.readthedocs.io/en/latest/integration/aspnetcore.html">AutoFac</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ninject.org/">Ninject</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/castleproject/Windsor">Castle Windsor</a></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/simpleinjector/SimpleInjector">Simple Injector</a></li>
+</ul>
+<ol start="2">
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/dependency-injection#service-lifetimes">生命周期</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/khellang/Scrutor">Scrutor</a></li>
+</ol>
+</li>
+<li><p>数据库</p>
+<ol>
+<li>关系型<ol>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/sql-server/sql-server-2019">SQL Server</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.postgresql.org/">PostgreSQL</a></li>
+<li><a target="_blank" rel="noopener" href="https://mariadb.org/">MariaDB</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mysql.com/">MySQL</a></li>
+</ol>
+</li>
+<li>云数据库<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/cosmos-db/">CosmosDB</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/dynamodb/">DynamoDB</a></li>
+</ul>
+</li>
+<li>搜索引擎<ul>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/">ElasticSearch</a></li>
+<li><a target="_blank" rel="noopener" href="http://lucene.apache.org/solr">Solr</a></li>
+<li><a target="_blank" rel="noopener" href="http://sphinxsearch.com/">Sphinx</a></li>
+</ul>
+</li>
+<li>NoSQL<ul>
+<li><a target="_blank" rel="noopener" href="https://redis.io/">Redis</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/first-mongo-app">MongoDB</a></li>
+<li><a target="_blank" rel="noopener" href="http://cassandra.apache.org/">Apache Cassandra</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mbdavid/LiteDB">LiteDB</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ravendb/ravendb">RavenDB</a></li>
+<li><a target="_blank" rel="noopener" href="http://couchdb.apache.org/">CouchDB</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>缓存</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/performance/caching/memory">内存缓存</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/performance/caching/distributed">分布式缓存</a><ol>
+<li><a target="_blank" rel="noopener" href="https://redis.io/">Redis</a><ol>
+<li><a target="_blank" rel="noopener" href="https://stackexchange.github.io/StackExchange.Redis">StackExchange.Redis</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotnetcore/EasyCaching">EasyCaching</a></li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://memcached.org/">Memcached</a></li>
+</ol>
+</li>
+<li>Entity Framework 二级缓存<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/VahidN/EFSecondLevelCache.Core">EFSecondLevelCache.Core</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SteffenMangold/EntityFrameworkCore.Cacheable">EntityFrameworkCore.Cacheable</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>日志</p>
+<ol>
+<li>日志框架<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/serilog/serilog">Serilog</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/NLog/NLog">NLog</a></li>
+</ul>
+</li>
+<li>日志管理系统<ul>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/what-is/elk-stack">ELK Stack</a></li>
+<li><a target="_blank" rel="noopener" href="http://sentry.io/">Sentry.io</a></li>
+<li><a target="_blank" rel="noopener" href="https://loggly.com/">Loggly.com</a></li>
+<li><a target="_blank" rel="noopener" href="http://elmah.io/">Elmah.io</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>API客户端和通信</p>
+<ol>
+<li>REST<ul>
+<li><a target="_blank" rel="noopener" href="https://devblogs.microsoft.com/odata/experimenting-with-odata-in-asp-net-core-3-1">OData</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Biarity/Sieve">Sieve</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/grpc">gRPC</a></li>
+<li>GraphQL<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ChilliCream/hotchocolate">HotChocolate</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/graphql-dotnet/graphql-dotnet">GraphQL-dotnet</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>实时通信</p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/signalr/introduction">SignalR</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/websockets">WebSockets</a></li>
+</ul>
+<ol start="11">
+<li>对象映射</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/AutoMapper/AutoMapper">AutoMapper</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MapsterMapper/Mapster">Mapster</a></li>
+<li><a target="_blank" rel="noopener" href="http://expressmapper.org/">ExpressMapper</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/agileobjects/AgileMapper">AgileMapper</a></li>
+</ul>
+<ol start="12">
+<li>任务调度</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services">Background Service</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/HangfireIO/Hangfire">HangFire</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/quartznet/quartznet">Quartz</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jamesmh/coravel">Coravel</a></li>
+</ul>
+<ol start="13">
+<li><p>测试</p>
+<ol>
+<li>单元测试<ol>
+<li>框架<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/core/testing/unit-testing-with-dotnet-test">xUnit</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/core/testing/unit-testing-with-nunit">NUnit</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/core/testing/unit-testing-with-mstest">MSTest</a></li>
+</ul>
+</li>
+<li>模拟<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/moq/moq4">Moq</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nsubstitute/NSubstitute">NSubstitute</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/FakeItEasy/FakeItEasy">FakeItEasy</a></li>
+</ul>
+</li>
+<li>断言<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/fluentassertions/fluentassertions">FluentAssertion</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shouldly/shouldly">Shouldly</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>集成测试<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/test/integration-tests">WebApplicationFactory</a></li>
+<li><a target="_blank" rel="noopener" href="https://koukia.ca/integration-testing-in-asp-net-core-2-0-51d14ede3968">TestServer</a></li>
+</ul>
+</li>
+<li>行为测试<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/techtalk/SpecFlow/tree/DotNetCore">SpecFlow</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/TestStack/TestStack.BDDfy">BDDfy</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/LightBDD/LightBDD">LightBDD</a></li>
+</ul>
+</li>
+<li>端到端测试<ul>
+<li><a target="_blank" rel="noopener" href="https://www.hanselman.com/blog/real-browser-integration-testing-with-selenium-standalone-chrome-and-aspnet-core-21">Selenium</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/kblok/puppeteer-sharp">Puppeteer-Sharp</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>微服务</p>
+<ol>
+<li>消息总线<ul>
+<li><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/tutorials/tutorial-one-dotnet.html">RabbitMQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/confluentinc/confluent-kafka-dotnet">Apache Kafka</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/activemq">ActiveMQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/service-bus-messaging/service-bus-messaging-overview">Azure Service Bus</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zeromq/netmq">NetMQ</a></li>
+</ul>
+</li>
+<li>消息队列<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/MassTransit/MassTransit">MassTransit</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Particular/NServiceBus">NServiceBus</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EasyNetQ/EasyNetQ">EasyNetQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotnetcore/CAP">CAP</a></li>
+</ul>
+</li>
+<li>API 网关<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ThreeMammals/Ocelot">Ocelot</a></li>
+</ul>
+</li>
+<li>容器化<ul>
+<li><a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a></li>
+</ul>
+</li>
+<li>服务编排<ul>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/">Kubernetes</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/swarm">Docker Swarm</a></li>
+</ul>
+</li>
+<li>反向代理<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/reverse-proxy">YARP</a></li>
+</ul>
+</li>
+<li>其他<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotnet/orleans">Orleans</a></li>
+<li><a target="_blank" rel="noopener" href="https://steeltoe.io/">Steeltoe</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dapr/dapr">Dapr</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotnet/tye">Tye</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>持续集成与部署</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/features/actions">Github Actions</a></li>
+<li><a target="_blank" rel="noopener" href="https://azure.microsoft.com/zh-cn/services/devops/pipelines/">Azure Pipelines</a></li>
+<li><a target="_blank" rel="noopener" href="https://travis-ci.org/">Travis CI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jenkins.io/">Jenkins</a></li>
+<li><a target="_blank" rel="noopener" href="https://circleci.com/">Circle CI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/teamcity">TeamCity</a></li>
+</ul>
+</li>
+<li><p>设计模式</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/architecture/patterns/cqrs">CQRS</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/decorator-design-pattern">Decorator</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/strategy-design-pattern">Strategy</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/builder-design-pattern">Builder</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/singleton-design-pattern">Singleton</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/facade-design-pattern">Facade</a></li>
+</ul>
+</li>
+<li><p>客户端库</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/blazor/">Blazor</a></li>
+</ul>
+</li>
+<li><p>模板引擎</p>
+</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/mvc/views/razor">Razor</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotliquid/dotliquid">DotLiquid</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lunet-io/scriban">Scriban</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sebastienros/fluid">Fluid</a></li>
+</ul>
+<ol start="19">
+<li><p>进一步了解的类库</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/jbogard/MediatR">MediatR</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/JeremySkinner/FluentValidation">Fluent Validation</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/App-vNext/Polly">Polly</a>    </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dotnet/BenchmarkDotNet">Benchmark.NET</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nodatime/nodatime">NodaTime</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MisterJames/GenFu">GenFu</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore">Swashbuckle</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果你认为该指南可以改进，请提交包含任何更新的 PR 并提交任何问题。此外，我将继续改进这个仓库，因此你可以 star 这个仓库以便于重新访问。</p>
+<p>灵感来源： <a target="_blank" rel="noopener" href="https://github.com/adam-golab/react-developer-roadmap">React Developer RoadMap</a></p>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><p>该指南是使用 <a target="_blank" rel="noopener" href="https://www.xmind.net/">xMind</a> 构建的。中文版项目文件为<code>aspnetcore-developer-roadmap.zh-Hans.xmind</code>。要修改它, 在<a target="_blank" rel="noopener" href="https://www.xmind.net/download/">此处</a>下载 xMind, 点击 <strong>Open File</strong> 并选择项目中的 <code>xmind</code> 文件。它将为你渲染生成路线图，更新它，上传和更新 readme 中的图像并创建一个 PR（使用<a target="_blank" rel="noopener" href="https://compressor.io/compress">Compressor.io</a>压缩导出的PNG；不过中国无法访问，用PS吧）。</p>
+<ul>
+<li>改进后提交 PR</li>
+<li>在 Issues 中讨论问题</li>
+<li>推广项目</li>
+</ul>
+<h2 id="许可协议"><a href="#许可协议" class="headerlink" title="许可协议"></a>许可协议</h2><p><a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img-blog.csdnimg.cn/58ecedad36254211bc5fa841af5669a5.png" alt="License: CC BY-NC-SA 4.0"></a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">GoodTimeGGB</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://goodtimeggb.github.io/2022/01/26/ASP-NET-Core%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97%EF%BC%882022%E7%89%88%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%89/">https://goodtimeggb.github.io/2022/01/26/ASP-NET-Core%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97%EF%BC%882022%E7%89%88%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%89/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">GoodTimeGGB</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/asp-net-net-core-net-c-%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">asp.net,.net core,.net,c#,后端</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay_img.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat_img.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'HG4kH4WkhvkWdyFDhwDlosMO-gzGzoHsz',
+        appKey: 'LiXQwNH7LbrydXRNarN0XI6k',
+        notify: 'true' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '快来评论吧~'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/02/09/Containers-feature-is-disabled-Enable-it-using-the-PowerShell-script-in-an-administrative-PowerShe/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Containers feature is disabled. Enable it using the PowerShell script (in an administrative PowerShe">
+                        
+                        <span class="card-title">Containers feature is disabled. Enable it using the PowerShell script (in an administrative PowerShe</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            GoodTimeGGB
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker-windows/">
+                        <span class="chip bg-color">docker,windows</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/25/RabbitMQ-Client-Exceptions-BrokerUnreachableException-None-of-the-specified-endpoints-were-reachabl/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="RabbitMQ.Client.Exceptions.BrokerUnreachableException:None of the specified endpoints were reachabl">
+                        
+                        <span class="card-title">RabbitMQ.Client.Exceptions.BrokerUnreachableException:None of the specified endpoints were reachabl</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            GoodTimeGGB
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/rabbitmq-%E5%88%86%E5%B8%83%E5%BC%8F-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-net-core-c/">
+                        <span class="chip bg-color">rabbitmq,分布式,消息队列,.net core,c#</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">GoodTimeGGB</a>
+            |&nbsp;Powered by&nbsp;<a href="https://goodtimeggb.github.io/" target="_blank">GoodTimeGGB</a>
+            |&nbsp;友情链接&nbsp;<a href="https://blog.csdn.net/sunshineGGB?spm=1000.2115.3001.5343" target="_blank">我的CSDN博客</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/GoodTimeGGB" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1031427248@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1031427248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1031427248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+</html>
